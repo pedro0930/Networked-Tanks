@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 114588647999449548}
   - component: {fileID: 114951373213060878}
   - component: {fileID: 54711572438264234}
+  - component: {fileID: 114915583645028430}
   m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
@@ -179,6 +180,8 @@ GameObject:
   - component: {fileID: 4624215681803718}
   - component: {fileID: 33053779198543312}
   - component: {fileID: 23825180286494812}
+  - component: {fileID: 54091248485395684}
+  - component: {fileID: 114457653927725840}
   m_Layer: 0
   m_Name: TankTurret
   m_TagString: Untagged
@@ -188,7 +191,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1486588172590488
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -336,11 +339,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486588172590488}
   m_LocalRotation: {x: 0.08715596, y: -0, z: -0, w: -0.9961947}
-  m_LocalPosition: {x: 0, y: 1.7, z: 1.35}
+  m_LocalPosition: {x: -0.000010554959, y: 0.75, z: 2.113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4975552011003654}
-  m_RootOrder: 4
+  m_Father: {fileID: 4624215681803718}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 350, y: 0, z: 0}
 --- !u!4 &4624215681803718
 Transform:
@@ -348,10 +351,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478096951654134}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000010554959, y: 1.0796412, z: -0.025321364}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4078404900156326}
   m_Father: {fileID: 4048997825151836}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -388,7 +392,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295391704907420}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000009519595, y: 0, z: -0.07388233}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4048997825151836}
@@ -414,14 +418,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386915323244364}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.7593973, y: 0.026168415, z: 1.0062753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4048997825151836}
   - {fileID: 4626758897063086}
   - {fileID: 4007148397332526}
   - {fileID: 224654153347107904}
-  - {fileID: 4078404900156326}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -598,6 +601,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056657759714512}
   m_Mesh: {fileID: 4300006, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
+--- !u!54 &54091248485395684
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1478096951654134}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54711572438264234
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -975,6 +993,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114457653927725840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1478096951654134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21dc464547bf749b451fd1cd679f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114544161961825578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1102,6 +1131,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRelativeRotation: 1
+--- !u!114 &114915583645028430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386915323244364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ba721f628fa354ab0afe0933b7425e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turret: {fileID: 1478096951654134}
 --- !u!114 &114943061297299392
 MonoBehaviour:
   m_ObjectHideFlags: 1
