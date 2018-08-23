@@ -12,6 +12,13 @@ public class TankMovement : NetworkBehaviour
     public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
     public GameObject turret;
 
+    [Header("Camera Position Variables")]
+    [SerializeField] float cameraDistance = 16f;
+    [SerializeField] float cameraHeight = 16f;
+
+    Transform mainCamera;
+    Vector3 cameraOffset;
+
     private string m_MovementAxisName;          // The name of the input axis for moving forward and back.
     private string m_TurnAxisName;              // The name of the input axis for turning.
     private Rigidbody m_Rigidbody;              // Reference used to move the tank.
@@ -53,6 +60,9 @@ public class TankMovement : NetworkBehaviour
 
         // Store the original pitch of the audio source.
         m_OriginalPitch = m_MovementAudio.pitch;
+        cameraOffset = new Vector3(0f, cameraHeight, -cameraDistance);
+        mainCamera = Camera.main.transform;
+        MoveCamera();
     }
 
 
@@ -67,6 +77,7 @@ public class TankMovement : NetworkBehaviour
         m_TurnInputValue = Input.GetAxis (m_TurnAxisName);
 
         EngineAudio ();
+        MoveCamera();
     }
 
 
@@ -127,5 +138,12 @@ public class TankMovement : NetworkBehaviour
 
         // Apply this rotation to the rigidbody's rotation.
         m_Rigidbody.MoveRotation (m_Rigidbody.rotation * turnRotation);
+    }
+    void MoveCamera()
+    {
+        mainCamera.position = transform.position;
+        mainCamera.rotation = transform.rotation;
+        mainCamera.Translate (cameraOffset);
+        mainCamera.LookAt(transform);
     }
 }
