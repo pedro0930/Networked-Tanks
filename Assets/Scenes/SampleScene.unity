@@ -135,13 +135,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326834283}
-  m_LocalRotation: {x: -0.062627405, y: 0.4993614, z: -0.053592835, w: -0.8624639}
-  m_LocalPosition: {x: 39.7, y: 1, z: -35.2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.5, y: 0.2, z: -14.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 9.297001, y: 300, z: 1.7360001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &326834285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,13 +175,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 614174390}
-  m_LocalRotation: {x: 0.035557542, y: 0.9623203, z: -0.07436426, w: 0.259124}
-  m_LocalPosition: {x: -39.1, y: 1, z: 38.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.05, y: 0.2, z: 14.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 9.297001, y: 150, z: 1.7360001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &614174392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 773190229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.2, y: 0.982, z: -39.75}
+  m_LocalPosition: {x: -38.42, y: 0.2, z: -37.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068013520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -822479833, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: ea7ea9eccea6c25439e9078683d6ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -353,7 +353,8 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 1
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1831968730000290, guid: 0ea71dee57346c646955bcf72a56e0e6, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -396,7 +397,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -409,6 +410,10 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  sceneCamera: {fileID: 1882980929}
+  cameraRotationRadius: 24
+  cameraRotationSpeed: 3
+  canRotate: 1
 --- !u!4 &1068013523
 Transform:
   m_ObjectHideFlags: 0
@@ -503,13 +508,13 @@ MonoBehaviour:
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_Wins: 0
-  - m_PlayerColor: {r: 1, g: 0.98466915, b: 0, a: 0}
+  - m_PlayerColor: {r: 1, g: 0.93967205, b: 0, a: 0}
     m_SpawnPoint: {fileID: 614174391}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_Wins: 0
-  - m_PlayerColor: {r: 1, g: 0, b: 0.8746815, a: 0}
+  - m_PlayerColor: {r: 1, g: 0, b: 0.80423546, a: 0}
     m_SpawnPoint: {fileID: 326834284}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
@@ -611,7 +616,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -698,13 +703,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964602097}
-  m_LocalRotation: {x: 0, y: 0.9396927, z: -0, w: -0.3420201}
-  m_LocalPosition: {x: 25.12743, y: 1.38, z: 28.961342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.87, y: 0.2, z: 27.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1966923608
 GameObject:
   m_ObjectHideFlags: 0
