@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class TankHealth : NetworkBehaviour
 {
-    [SyncVar]
     public float m_StartingHealth = 100f;               // The amount of health each tank starts with.
     public Slider m_Slider;                             // The slider to represent how much health the tank currently has.
     public Image m_FillImage;                           // The image component of the slider.
@@ -15,7 +14,9 @@ public class TankHealth : NetworkBehaviour
     
     private AudioSource m_ExplosionAudio;               // The audio source to play when the tank explodes.
     private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
-    private float m_CurrentHealth;                      // How much health the tank currently has.
+
+    [SyncVar(hook = "SetHealthUI")]
+    public float m_CurrentHealth;                      // How much health the tank currently has.
     private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
 
 
@@ -39,31 +40,28 @@ public class TankHealth : NetworkBehaviour
         m_Dead = false;
 
         // Update the health slider's value and color.
-        SetHealthUI();
+        SetHealthUI(m_CurrentHealth);
     }
 
-    public void Damage(float amount)
-    {
-        m_CurrentHealth -= amount;
 
-        if (m_CurrentHealth <= 0f ){
-    
+    public void TakeDamage (float amount)
+    {
+        if (!isServer){
+            return;
+        }
         // Reduce current health by the amount of damage done.
         m_CurrentHealth -= amount;
+    }
 
-        // Change the UI elements appropriately.
-        SetHealthUI ();
-        }
+
+    private void SetHealthUI(float m_CurrentHealth)
+    {
         // If the current health is at or below zero and it has not yet been registered, call OnDeath.
         if (m_CurrentHealth <= 0f && !m_Dead)
         {
-            OnDeath ();
+            OnDeath();
         }
-    }
 
-
-    private void SetHealthUI ()
-    {
         // Set the slider's value appropriately.
         m_Slider.value = m_CurrentHealth;
 
