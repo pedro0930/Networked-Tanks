@@ -11,6 +11,8 @@ namespace Prototype.NetworkLobby
 {
     public class LobbyManager : NetworkLobbyManager 
     {
+        public Font myNewFont;
+
         static short MsgKicked = MsgType.Highest + 1;
 
         static public LobbyManager s_Singleton;
@@ -65,6 +67,12 @@ namespace Prototype.NetworkLobby
             DontDestroyOnLoad(gameObject);
 
             SetServerInfo("Offline", "None");
+
+
+            /* 把全部的字體換成 myNewFont*/
+            var textComponents = Component.FindObjectsOfType<Text>();
+            foreach (var component in textComponents)
+                component.font = myNewFont;
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
