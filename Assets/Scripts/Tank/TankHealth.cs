@@ -42,18 +42,18 @@ public class TankHealth : NetworkBehaviour
         SetHealthUI();
     }
 
-
-    public void TakeDamage (float amount)
+    public void Damage(float amount)
     {
-        if (!isServer){
-            return;
-        }
+        m_CurrentHealth -= amount;
+
+        if (m_CurrentHealth <= 0f ){
+    
         // Reduce current health by the amount of damage done.
         m_CurrentHealth -= amount;
 
         // Change the UI elements appropriately.
         SetHealthUI ();
-
+        }
         // If the current health is at or below zero and it has not yet been registered, call OnDeath.
         if (m_CurrentHealth <= 0f && !m_Dead)
         {

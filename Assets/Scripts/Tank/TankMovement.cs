@@ -115,6 +115,7 @@ public class TankMovement : NetworkBehaviour
         Move ();
         Turn ();
         turret.transform.position = transform.TransformPoint (0, 1, 0);
+        m_Rigidbody.angularVelocity = Vector3.zero;
     }
 
 
