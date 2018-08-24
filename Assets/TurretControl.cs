@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class TurretControl : MonoBehaviour {
-	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+public class TurretControl : NetworkBehaviour {
+
+	public Rigidbody TankTurret;          // Reference to the player's rigidbody.
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 	// Use this for initialization
@@ -18,12 +19,13 @@ public class TurretControl : MonoBehaviour {
         floorMask = LayerMask.GetMask ("Ground");
 
         // Set up references.
-        playerRigidbody = GetComponent <Rigidbody> ();
+        //TankTurret = GetComponent <Rigidbody> ();
     }
 
 	void FixedUpdate () 
 	{
-		Aim();
+        if(isLocalPlayer)
+		    Aim();
 
 	}
 	void Aim()
@@ -32,7 +34,7 @@ public class TurretControl : MonoBehaviour {
 
 		RaycastHit floorHit;
 
-		 if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
+		if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
         {
             // Create a vector from the player to the point on the floor the raycast from the mouse hit.
             Vector3 playerToMouse = floorHit.point - transform.position;
@@ -44,7 +46,7 @@ public class TurretControl : MonoBehaviour {
             Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
 
             // Set the player's rotation to this new rotation.
-            playerRigidbody.MoveRotation (newRotation);
+            TankTurret.MoveRotation (newRotation);
         }
 	}
 }

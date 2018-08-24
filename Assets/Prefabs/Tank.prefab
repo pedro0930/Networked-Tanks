@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 114951373213060878}
   - component: {fileID: 54711572438264234}
   - component: {fileID: 114222238762626342}
+  - component: {fileID: 114153061319651150}
   m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
@@ -181,7 +182,8 @@ GameObject:
   - component: {fileID: 33053779198543312}
   - component: {fileID: 23825180286494812}
   - component: {fileID: 54091248485395684}
-  - component: {fileID: 114457653927725840}
+  - component: {fileID: 114231704575042566}
+  - component: {fileID: 114359580910581848}
   m_Layer: 0
   m_Name: TankTurret
   m_TagString: Untagged
@@ -870,6 +872,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114153061319651150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386915323244364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21dc464547bf749b451fd1cd679f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TankTurret: {fileID: 54091248485395684}
 --- !u!114 &114206418545407380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -909,6 +923,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114231704575042566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1478096951654134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 115
+    i1: 118
+    i2: 166
+    i3: 127
+    i4: 5
+    i5: 146
+    i6: 164
+    i7: 180
+    i8: 89
+    i9: 88
+    i10: 118
+    i11: 33
+    i12: 94
+    i13: 66
+    i14: 97
+    i15: 45
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114268932897275192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,7 +1051,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114457653927725840
+--- !u!114 &114359580910581848
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1013,9 +1059,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1478096951654134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f21dc464547bf749b451fd1cd679f56, type: 3}
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114544161961825578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,6 +1148,7 @@ MonoBehaviour:
   m_FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   m_ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   m_ExplosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 2}
+  m_CurrentHealth: 0
 --- !u!114 &114782256988891798
 MonoBehaviour:
   m_ObjectHideFlags: 1
