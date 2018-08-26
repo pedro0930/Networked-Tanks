@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 114951373213060878}
   - component: {fileID: 54711572438264234}
   - component: {fileID: 114222238762626342}
+  - component: {fileID: 114153061319651150}
+  - component: {fileID: 114246370998572682}
   m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
@@ -181,7 +183,6 @@ GameObject:
   - component: {fileID: 33053779198543312}
   - component: {fileID: 23825180286494812}
   - component: {fileID: 54091248485395684}
-  - component: {fileID: 114457653927725840}
   m_Layer: 0
   m_Name: TankTurret
   m_TagString: Untagged
@@ -870,6 +871,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114153061319651150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386915323244364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f21dc464547bf749b451fd1cd679f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TankTurret: {fileID: 54091248485395684}
 --- !u!114 &114206418545407380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -909,6 +922,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114246370998572682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386915323244364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4624215681803718}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!114 &114268932897275192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,17 +1037,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114457653927725840
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1478096951654134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f21dc464547bf749b451fd1cd679f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114544161961825578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,6 +1113,7 @@ MonoBehaviour:
   m_FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   m_ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   m_ExplosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 2}
+  m_CurrentHealth: 0
 --- !u!114 &114782256988891798
 MonoBehaviour:
   m_ObjectHideFlags: 1
