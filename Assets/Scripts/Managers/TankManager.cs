@@ -1,15 +1,17 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Networking;
 
-[Serializable]
-public class TankManager
+
+public class TankManager : NetworkBehaviour
 {
     // This class is to manage various settings on a tank.
     // It works with the GameManager class to control how the tanks behave
     // and whether or not players have control of their tank in the 
     // different phases of the game.
 
-    public Color m_PlayerColor;                             // This is the color this tank will be tinted.
+    //public Color m_PlayerColor;                             // This is the color this tank will be tinted.
+
     public Transform m_SpawnPoint;                          // The position and direction the tank will have when it spawns.
     [HideInInspector] public int m_PlayerNumber;            // This specifies which player this the manager for.
     [HideInInspector] public string m_ColoredPlayerText;    // A string that represents the player with their number colored to match their tank.
@@ -24,6 +26,7 @@ public class TankManager
 
     public void Setup ()
     {
+        /*
         // Get references to the components.
         m_Movement = m_Instance.GetComponent<TankMovement> ();
         m_Shooting = m_Instance.GetComponent<TankShooting> ();
@@ -44,7 +47,7 @@ public class TankManager
         {
             // ... set their material color to the color specific to this tank.
             renderers[i].material.color = m_PlayerColor;
-        }
+        }*/
     }
 
 
@@ -71,10 +74,11 @@ public class TankManager
     // Used at the start of each round to put the tank into it's default state.
     public void Reset ()
     {
+        /*
         m_Instance.transform.position = m_SpawnPoint.position;
         m_Instance.transform.rotation = m_SpawnPoint.rotation;
 
         m_Instance.SetActive (false);
-        m_Instance.SetActive (true);
+        m_Instance.SetActive (true);*/
     }
 }

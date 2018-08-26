@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 public class NetworkManager_CameraControl : NetworkManager {
 	[Header("SceneCamera Properties")]
 	[SerializeField] Transform sceneCamera;
-	[SerializeField] float cameraRotationRadius = 24f;
-	[SerializeField] float cameraRotationSpeed = 3f;
+	//[SerializeField] float cameraRotationRadius = 24f;
+	//[SerializeField] float cameraRotationSpeed = 3f;
 	[SerializeField] bool canRotate = true;
 
 	float rotation;
@@ -33,6 +33,8 @@ public class NetworkManager_CameraControl : NetworkManager {
 		if (!canRotate){
 			return;
 		}
+
+        /* WTF is this?
 		rotation += cameraRotationSpeed * Time.deltaTime;
 		if(rotation >=360f){
 			rotation -= 360f;
@@ -42,7 +44,7 @@ public class NetworkManager_CameraControl : NetworkManager {
 		sceneCamera.rotation = Quaternion.Euler (0f, rotation, 0f);
 		sceneCamera.Translate (0f, cameraRotationRadius, -cameraRotationRadius);
 		sceneCamera.LookAt (Vector3.zero);
-
+        */
 	}
 
 
