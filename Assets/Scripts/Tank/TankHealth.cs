@@ -15,8 +15,10 @@ public class TankHealth : NetworkBehaviour
     private AudioSource m_ExplosionAudio;               // The audio source to play when the tank explodes.
     private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
 
-    [SyncVar(hook = "SetHealthUI")]
+    [SyncVar]
     public float m_CurrentHealth;                      // How much health the tank currently has.
+
+    [SyncVar]
     private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
 
 
@@ -32,36 +34,38 @@ public class TankHealth : NetworkBehaviour
         m_ExplosionParticles.gameObject.SetActive (false);
     }
 
-
+    [Server]
     private void OnEnable()
     {
+        print("TankHealth onEnable!");
         // When the tank is enabled, reset the tank's health and whether or not it's dead.
         m_CurrentHealth = m_StartingHealth;
         m_Dead = false;
 
         // Update the health slider's value and color.
-        SetHealthUI(m_CurrentHealth);
+        RpcSetHealthUI(m_CurrentHealth);
     }
 
-
+    [Server]
     public void TakeDamage (float amount)
     {
-        if (!isServer){
-            return;
-        }
         // Reduce current health by the amount of damage done.
         m_CurrentHealth -= amount;
-    }
+        RpcSetHealthUI(m_CurrentHealth);
 
-
-    private void SetHealthUI(float m_CurrentHealth)
-    {
         // If the current health is at or below zero and it has not yet been registered, call OnDeath.
         if (m_CurrentHealth <= 0f && !m_Dead)
         {
-            OnDeath();
-        }
+            // Set the flag so that this function is only called once.
+            m_Dead = true;
 
+            RpcOnDeath();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetHealthUI(float m_CurrentHealth)
+    {
         // Set the slider's value appropriately.
         m_Slider.value = m_CurrentHealth;
 
@@ -69,12 +73,9 @@ public class TankHealth : NetworkBehaviour
         m_FillImage.color = Color.Lerp (m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
     }
 
-
-    private void OnDeath ()
+    [ClientRpc]
+    private void RpcOnDeath ()
     {
-        // Set the flag so that this function is only called once.
-        m_Dead = true;
-
         // Move the instantiated explosion prefab to the tank's position and turn it on.
         m_ExplosionParticles.transform.position = transform.position;
         m_ExplosionParticles.gameObject.SetActive (true);
