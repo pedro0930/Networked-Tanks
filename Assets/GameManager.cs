@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class GameManager : NetworkBehaviour
 {
     public int m_NumRoundsToWin = 5;            // The number of rounds a single player has to win to win the game.
+    public float m_LoadDelay = 1f;             // The delay between the start of RoundPerSet and RoundStarting phases.
     public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
     public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
 
@@ -13,38 +14,48 @@ public class GameManager : NetworkBehaviour
     public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
     //public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
 
-    private TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
+    private TankManager[] m_Tanks; // A collection of managers for enabling and disabling different aspects of the tanks.
 
     [SyncVar]
     private int m_RoundNumber;                  // Which round the game is currently on.
 
+    private WaitForSeconds m_LoadWait;         // Used to have a delay whilst the round load.
     private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
     private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
     private TankManager m_RoundWinner;          // Reference to the winner of the current round.  Used to make an announcement of who won.
     private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 
-    [ServerCallback]
+    [Server]
     private void Start()
     {
-        print("servers GM start!");
-        // Create the delays so they only have to be made once.
+        //StartCoroutine(Example());
+
+        m_LoadWait = new WaitForSeconds(m_LoadDelay);
         m_StartWait = new WaitForSeconds (m_StartDelay);
         m_EndWait = new WaitForSeconds (m_EndDelay);
-                
+
+        /* 取得全部場上玩家的TankManager Reference
         var playerTanks = GameObject.FindGameObjectsWithTag("PlayerTank");
-        
-        foreach (var pt in playerTanks)
-        {
-            print("this player tank ID:" + pt.GetComponent<NetworkIdentity>().netId);
-        }
+        m_Tanks = new TankManager[playerTanks.Length];
 
-
-        //m_Tanks[i].m_Instance = Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
+        print("playerTanks L :" + playerTanks.Length);
+        print("m_Tanks L :" + m_Tanks.Length);
+        for (var i = 0; i < playerTanks.Length; i++)
+        {   
+            m_Tanks[i] = playerTanks[i].GetComponent<TankManager>();            
+        }*/
 
         //SetCameraTargets();
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
-        //StartCoroutine (GameLoop ());
+        StartCoroutine(GameLoop ());
+    }
+
+    IEnumerator Example()
+    {
+        print(Time.time);
+        yield return new WaitForSeconds(5);
+        print(Time.time);
     }
 
     /*
@@ -69,6 +80,8 @@ public class GameManager : NetworkBehaviour
     [ServerCallback]
     private IEnumerator GameLoop ()
     {
+        yield return StartCoroutine(RoundPerSet());
+
         // Start off by running the 'RoundStarting' coroutine but don't return until it's finished.
         yield return StartCoroutine (RoundStarting ());
 
@@ -92,9 +105,34 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+
+    [Server]
+    private IEnumerator RoundPerSet()
+    {
+        // 先等一下，等場上玩家坦克都出現再處理.
+        yield return m_LoadWait;
+
+        /* 取得全部場上玩家的TankManager Reference*/
+        var playerTanks = GameObject.FindGameObjectsWithTag("PlayerTank");
+        var spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+        m_Tanks = new TankManager[playerTanks.Length];
+
+        
+        for (var i = 0; i < playerTanks.Length; i++)
+        {
+            m_Tanks[i] = playerTanks[i].GetComponent<TankManager>();
+            m_Tanks[i].m_SpawnPoint = spawnPoints[i].GetComponent<Transform>();
+        }
+    }
+
+
+
     [ServerCallback]
     private IEnumerator RoundStarting ()
     {
+        var playerTanks = GameObject.FindGameObjectsWithTag("PlayerTank");
+        print("RoundStarting playerTanks L :" + playerTanks.Length);
+
         // As soon as the round starts reset the tanks and make sure they can't move.
         ResetAllTanks ();
         DisableTankControl ();
@@ -187,7 +225,7 @@ public class GameManager : NetworkBehaviour
             if (m_Tanks[i].m_Instance.activeSelf)
                 return m_Tanks[i];
         }
-
+        
         // If none of the tanks are active it is a draw so return null.
         return null;
     }
