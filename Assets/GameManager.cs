@@ -116,7 +116,7 @@ public class GameManager : NetworkBehaviour
         var playerTanks = GameObject.FindGameObjectsWithTag("PlayerTank");
         var spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
         m_Tanks = new TankManager[playerTanks.Length];
-
+        print("RoundPerSet T L : " + playerTanks.Length);
         
         for (var i = 0; i < playerTanks.Length; i++)
         {
@@ -130,9 +130,6 @@ public class GameManager : NetworkBehaviour
     [ServerCallback]
     private IEnumerator RoundStarting ()
     {
-        var playerTanks = GameObject.FindGameObjectsWithTag("PlayerTank");
-        print("RoundStarting playerTanks L :" + playerTanks.Length);
-
         // As soon as the round starts reset the tanks and make sure they can't move.
         ResetAllTanks ();
         DisableTankControl ();
@@ -280,6 +277,7 @@ public class GameManager : NetworkBehaviour
     [ServerCallback]
     private void ResetAllTanks()
     {
+        print("ResetAlltank L: " + m_Tanks.Length);
         for (int i = 0; i < m_Tanks.Length; i++)
         {
             m_Tanks[i].Reset();

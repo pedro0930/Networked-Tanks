@@ -77,9 +77,11 @@ public class TankManager : NetworkBehaviour
 
 
     // Used at the start of each round to put the tank into it's default state.
+    [Server]
     public void Reset()
     {
-
+        print("Resting");
+        print("m_Instance iD: " + m_Instance.GetInstanceID());
         m_Instance.transform.position = m_SpawnPoint.position;
         m_Instance.transform.rotation = m_SpawnPoint.rotation;
 
