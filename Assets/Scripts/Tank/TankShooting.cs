@@ -99,7 +99,6 @@ public class TankShooting : NetworkBehaviour
         // Set the shell's velocity to the launch force in the fire position's forward direction.
         shellInstance.velocity = m_CurrentLaunchForce * m_FireTransform.forward; ;
 
-        print("m_CurrentLaunchForce: " + m_CurrentLaunchForce);
         NetworkServer.Spawn(shellInstance.gameObject);
 
         // Change the clip to the firing clip and play it.
